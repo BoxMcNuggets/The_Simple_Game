@@ -18,6 +18,7 @@ namespace The_Simple_Game.Presentation
         private string _messageBoxContent;
         private string _done;
 
+
         public Gameboard Gameboard
         {
             get { return _gameboard; }
