@@ -192,7 +192,7 @@
                         Orientation="Horizontal"
                         HorizontalAlignment="Center">
                         <Label 
-                            Content="Player X: " 
+                            Content="Player 1: " 
                             HorizontalAlignment="Center" 
                             FontSize="25"
                             FontWeight="Bold"/>
@@ -250,7 +250,7 @@
                         Orientation="Horizontal"
                         HorizontalAlignment="Center">
                         <Label 
-                            Content="Player O: " 
+                            Content="Player 2: " 
                             HorizontalAlignment="Center" 
                             FontSize="25"
                             FontWeight="Bold"/>
