@@ -1,0 +1,314 @@
+﻿<Window x:Class="The_Simple_Game.Presentation.GameView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:The_Simple_Game.Presentation"
+      mc:Ignorable="d" 
+      Height="1055" 
+      Width="800"
+      Background="DodgerBlue"
+      Title="The Simple Game">
+
+    <Window.Resources>
+        <Style x:Key="GameBoardButtonStyle" TargetType="Button">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="60"/>
+            <Setter Property="Background" Value="Silver"/>
+            <Setter Property="Foreground" Value="MidnightBlue"/>
+            <Setter Property="IsEnabled" Value="{Binding Done}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid 
+                            Width="{TemplateBinding Width}" 
+                            Height="{TemplateBinding Height}" 
+                            ClipToBounds="True">
+                            <Rectangle 
+                                x:Name="innerRectangle" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch" 
+                                Fill="{TemplateBinding Background}" 
+                                RadiusX="100" 
+                                RadiusY="100" />
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter 
+                                    x:Name="myContentPresenter" 
+                                    Margin="2" 
+                                    HorizontalAlignment="Center"
+                                    Content="{TemplateBinding  Content}" 
+                                    TextBlock.Foreground="Black" />
+                            </DockPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="LightSteelBlue" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="WindowButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="175"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Background" Value="Silver"/>
+            <Setter Property="Foreground" Value="MidnightBlue"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid 
+                            Width="{TemplateBinding Width}" 
+                            Height="{TemplateBinding Height}" 
+                            ClipToBounds="True">
+                            <Rectangle 
+                                x:Name="innerRectangle" 
+                                HorizontalAlignment="Stretch" 
+                                VerticalAlignment="Stretch" 
+                                Fill="{TemplateBinding Background}" 
+                                RadiusX="5" 
+                                RadiusY="5" />
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter 
+                                    x:Name="myContentPresenter" 
+                                    Margin="2" 
+                                    HorizontalAlignment="Center"
+                                    Content="{TemplateBinding  Content}" 
+                                    TextBlock.Foreground="Black" />
+                            </DockPanel>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <SolidColorBrush Color="LightSteelBlue" />
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="75"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="75"/>
+        </Grid.RowDefinitions>
+        <Border
+            BorderThickness="5"
+            BorderBrush="Black"
+            Width="500"
+            Margin="10">
+            <Label 
+                Grid.Row="0"
+                Content="The Simple Game"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="30"
+                FontFamily="Georgia"/>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="130"/>
+                </Grid.RowDefinitions>
+                <Border 
+                    Grid.Row="0"
+                    Margin="10"
+                    BorderBrush="Black"
+                    BorderThickness="10">
+                    <UniformGrid
+                        Grid.Row="0"
+                        Width="745"
+                        Height="500"
+                        Background="Gold"
+                        Rows="4"
+                        Columns="4">
+                        <Button Name="one" Tag="00" Content="{Binding Gameboard.CurrentBoard[0][0]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="two" Tag="01" Content="{Binding Gameboard.CurrentBoard[0][1]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="three" Tag="02" Content="{Binding Gameboard.CurrentBoard[0][2]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="four" Tag="03" Content="{Binding Gameboard.CurrentBoard[0][3]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="five" Tag="10" Content="{Binding Gameboard.CurrentBoard[1][0]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="six" Tag="11" Content="{Binding Gameboard.CurrentBoard[1][1]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="seven" Tag="12" Content="{Binding Gameboard.CurrentBoard[1][2]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="eight" Tag="13" Content="{Binding Gameboard.CurrentBoard[1][3]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="nine" Tag="20" Content="{Binding Gameboard.CurrentBoard[2][0]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="ten" Tag="21" Content="{Binding Gameboard.CurrentBoard[2][1]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="eleven" Tag="22" Content="{Binding Gameboard.CurrentBoard[2][2]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="twelve" Tag="23" Content="{Binding Gameboard.CurrentBoard[2][3]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="thirteen" Tag="30" Content="{Binding Gameboard.CurrentBoard[3][0]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="fourteen" Tag="31" Content="{Binding Gameboard.CurrentBoard[3][1]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="fifteen" Tag="32" Content="{Binding Gameboard.CurrentBoard[3][2]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                        <Button Name="sixteen" Tag="33" Content="{Binding Gameboard.CurrentBoard[3][3]}" Style="{StaticResource GameBoardButtonStyle}" Click="GameBoard_Click"/>
+                    </UniformGrid>
+                </Border>
+                <Border 
+                    Grid.Row="1"
+                    Width="700"
+                    Height="100"
+                    BorderThickness="5"
+                    Background="LightGray"
+                    BorderBrush="Black"
+                    CornerRadius="10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <TextBlock
+                        Grid.Row="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="30"
+                        Foreground="DodgerBlue"
+                        Text="{Binding MessageBoxContent}">
+                    </TextBlock>
+                </Border>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel
+                Grid.Column="0"
+                Orientation="Vertical">
+                <Border
+                    Background="LightGray"
+                    BorderBrush="Black"
+                    BorderThickness="5"
+                    Height="50">
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <Label 
+                            Content="Player X: " 
+                            HorizontalAlignment="Center" 
+                            FontSize="25"
+                            FontWeight="Bold"/>
+                        <Label 
+                            Content="{Binding PlayerX.Name}" 
+                            HorizontalAlignment="Center" 
+                            FontSize="25"/>
+                    </StackPanel>
+                </Border>
+                <Border
+                    Background="LightGray"
+                    BorderThickness="5"
+                    Width="250"
+                    Height="50">
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <Label Content="Wins: " FontSize="25"/>
+                        <TextBox Width="80" Text="{Binding PlayerX.Wins}"  FontSize="25" />
+                    </StackPanel>
+                </Border>
+                <Border
+                    Background="LightGray"
+                    BorderThickness="5"
+                    Width="250"
+                    Height="50">
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <Label Content="Losses: " FontSize="25"/>
+                        <TextBox Width="80" Text="{Binding PlayerX.Losses}" FontSize="25" />
+                    </StackPanel>
+                </Border>
+                <Border
+                    Background="LightGray"
+                    BorderThickness="5"
+                    Width="250"
+                    Height="50">
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <Label Content="Ties: " FontSize="25"/>
+                        <TextBox Width="80" Text="{Binding PlayerX.Ties}" FontSize="25" />
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="1"
+                        Orientation="Vertical">
+                <Border
+                    Background="LightGray"
+                    BorderBrush="Black"
+                    BorderThickness="5"
+                    Height="50">
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <Label 
+                            Content="Player O: " 
+                            HorizontalAlignment="Center" 
+                            FontSize="25"
+                            FontWeight="Bold"/>
+                        <Label 
+                            Content="{Binding PlayerO.Name}" 
+                            HorizontalAlignment="Center" 
+                            FontSize="25"/>
+                    </StackPanel>
+                </Border>
+                <Border
+                    Background="LightGray"
+                    BorderThickness="5"
+                    Width="250"
+                    Height="50">
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <Label Content="Wins: " FontSize="25"/>
+                        <TextBox Width="80" Text="{Binding PlayerO.Wins}"  FontSize="25" />
+                    </StackPanel>
+                </Border>
+                <Border
+                    Background="LightGray"
+                    BorderThickness="5"
+                    Width="250"
+                    Height="50">
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <Label Content="Losses: " FontSize="25"/>
+                        <TextBox Width="80" Text="{Binding PlayerO.Losses}" FontSize="25" />
+                    </StackPanel>
+                </Border>
+                <Border
+                    Background="LightGray"
+                    BorderThickness="5"
+                    Width="250"
+                    Height="50">
+                    <StackPanel
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                        <Label Content="Ties: " FontSize="25"/>
+                        <TextBox Width="80" Text="{Binding PlayerO.Ties}" FontSize="25" />
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Border BorderThickness="5" BorderBrush="Black"/>
+            <StackPanel Margin="10">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button x:Name="NewGame" Content="New Game" Style="{DynamicResource WindowButtonStyle}" Click="WindowButton_Click"/>
+                    <Button x:Name="ResetGame" Content="Reset Game" Style="{DynamicResource WindowButtonStyle}" Click="WindowButton_Click"/>
+                    <Button x:Name="QuitSave" Content="Quit and Save" Style="{DynamicResource WindowButtonStyle}" Click="WindowButton_Click"/>
+                    <Button x:Name="Quit" Content="Quit" Style="{DynamicResource WindowButtonStyle}" Click="WindowButton_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
